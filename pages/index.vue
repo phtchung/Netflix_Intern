@@ -4,7 +4,7 @@
     <div class="container" style="margin: auto;padding: 0 36px" >
       <h2 style="margin-top: 40px;font-weight: 550;color: white;font-size: 60px">Film up Coming</h2>
       <el-divider></el-divider>
-      <Slide />
+      <Slide :slides="slides" />
 
 
       <h2 style="margin-top: 40px;font-weight: 550;color: white;font-size: 60px">Film Top</h2>
@@ -30,13 +30,14 @@ export default {
         'https://image.tmdb.org/t/p/original/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg',
         'https://image.tmdb.org/t/p/original/94TIUEhuwv8PhdIADEvSuwPljS5.jpg'
       ],
-
-      slider2Items: [
-        {img:'https://image.tmdb.org/t/p/original/5Y5pz0NX7SZS9036I733F7uNcwK.jpg'},
-        {img:'https://image.tmdb.org/t/p/original/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg'},
-        {img:'https://image.tmdb.org/t/p/original/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg'},
-        { img:'https://image.tmdb.org/t/p/original/94TIUEhuwv8PhdIADEvSuwPljS5.jpg'}
-      ],
+      slides:
+        [{image:'https://image.tmdb.org/t/p/original/5Y5pz0NX7SZS9036I733F7uNcwK.jpg'},
+          {image:'https://image.tmdb.org/t/p/original/5Y5pz0NX7SZS9036I733F7uNcwK.jpg'},
+          {image:'https://image.tmdb.org/t/p/original/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg'},
+          {image:'https://image.tmdb.org/t/p/original/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg'},
+          {image:'https://image.tmdb.org/t/p/original/94TIUEhuwv8PhdIADEvSuwPljS5.jpg'},
+          {image:'https://image.tmdb.org/t/p/original/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg'},
+        ],
     }
   }
 }
