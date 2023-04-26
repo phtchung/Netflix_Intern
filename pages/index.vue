@@ -10,14 +10,10 @@
       <Slide :slides="slides" />
       <h2 style="margin-top: 40px;font-weight: 550;color: white;font-size: 60px">Film Popular</h2>
       <el-divider></el-divider>
-      <div class="row">
+      <div class="row position-relative " style="margin-bottom: 90px" >
         <div v-for="(slide, index) in slides" :key="index" class="d-flex col-md-3 "  >
           <Card :image="slide.backdrop_path" :title="slide.title" ></Card>
         <!--        <img :src=slide.image style="width: 100%;background-size: cover;border-radius: 12px;transition: transform 0.3s ease-in-out; " alt="">-->
-        </div>
-
-        <div class="row offset-md-5 text-white bg-black">
-          <b-pagination-nav :link-gen="linkGen" :number-of-pages="10" use-router></b-pagination-nav>
         </div>
       </div>
 
@@ -139,7 +135,10 @@ export default {
           },
         ],
     }
-  }
+  },
+  created() {
+
+  },
 }
 </script>
 
@@ -176,6 +175,11 @@ export default {
     transform: translateY(-50%);
   }
 
+  .pagination_cen{
+    position: absolute;
+    top: 100%;
+
+  }
 
 
 </style>
