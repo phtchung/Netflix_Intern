@@ -2,7 +2,8 @@
   <div>
     <div class="row" style="position: relative">
       <div v-for="(slide, index) in displayedBoxes" :key="index" class="box_wrapper col-md-3 " >
-        <img :src=slide.image style="width: 100%;background-size: cover;border-radius: 12px;transition: transform 0.3s ease-in-out; " alt="">
+        <Card :image="slide.backdrop_path" :title="slide.title"></Card>
+<!--        <img :src=slide.image style="width: 100%;background-size: cover;border-radius: 12px;transition: transform 0.3s ease-in-out; " alt="">-->
       </div>
       <div class="next_remove">
         <b-btn :disabled="currentPage === 0" style="background-color: transparent;border: 0;margin-left: -40px">
@@ -21,7 +22,10 @@
 </template>
 
 <script>
+import Card from "./Card";
 export default {
+  components: { Card },
+
   props:{
     slides:Array
   },
@@ -75,7 +79,7 @@ box_wrapper{
   display: flex;
   height: 250px;
   overflow: hidden;
-  ;
+
 }
 .bright-color {
   color: #413e3e;
