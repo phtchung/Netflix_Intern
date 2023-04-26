@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <el-menu
       :default-active="activeIndex2"
       mode="horizontal"
@@ -33,13 +33,18 @@
 <!--      <el-menu-item index="3" disabled>Info</el-menu-item>-->
 <!--      <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">Orders</a></el-menu-item>-->
     </el-menu>
-    <Nuxt />
+    <Nuxt  />
+    <Footer></Footer>
   </div>
 
 </template>
 
 <script>
+import Footer from "./Footer";
 export default {
+  components:{
+    Footer
+  },
   data() {
     return {
       activeIndex: '1',
