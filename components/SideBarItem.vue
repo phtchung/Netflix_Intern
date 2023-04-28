@@ -4,14 +4,14 @@
       <img
         style="max-width: 40px;background-size: contain"
         height="55px"
-        src="https://image.tmdb.org/t/p/original/cvsXj3I9Q2iyyIo95AecSd1tad7.jpg"
+        :src="'https://image.tmdb.org/t/p/original'+img_src"
       />
 <!--        lazy-src="/images/loadingImage.gif"-->
 
       <div class="d-flex flex-column ">
-        <h6 class="film-name m-0 ">tên phim</h6>
+        <h6 class="film-name m-0 ">{{name}}</h6>
         <div>
-          <b-form-rating class="rcm_rating" readonly  size="sm" id="rating-inline" color="yellow" stars="10" style="background-color: transparent;border: none;padding: 0"  inline value="4.5"></b-form-rating>
+          <b-form-rating class="rcm_rating" readonly  size="sm" id="rating-inline" color="yellow" stars="10" style="background-color: transparent;border: none;padding: 0"  inline :value="starValue"></b-form-rating>
         </div>
       </div>
     </div>
@@ -20,10 +20,11 @@
 
 <script>
 export default {
-
   components: {  },
-  computed: {
-
+  props: {
+    name:String,
+    starValue:String,
+    img_src:String,
   },
   methods: {
     // handleWatch(id) {
