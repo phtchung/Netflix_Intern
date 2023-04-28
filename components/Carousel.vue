@@ -4,32 +4,26 @@
       <div class="item">
 
         <div class="banner" style="position: absolute; top: 50%; left: 25%; transform: translate(-50%, -50%); color: white; text-shadow: 1px 1px black;">
-            <h2 class="banner-header">The Godfather Part II</h2>
-            <p style="margin: 0" >In the continuing saga of the Corleone crime family, a young Vito Corleone grows up in Sicily and in 1910s New York. In the 1950s, Michael Corleone attempts to expand the family business into Las Vegas, Hollywood and Cuba.</p>
+            <h2 class="banner-header">{{carousel.title}}</h2>
+            <p style="margin: 0" >{{carousel.overview}}</p>
             <div style="margin-top: 30px">
-              <el-button type="success" size="medium">WATCH NOW
-                <i class="el-icon-caret-right"></i>
+              <nuxt-link :to="`/films/${carousel.id}`">
+                <b-button variant="success" style="margin-right: 16px">WATCH NOW
+                  <i class="fa-sharp fa-solid fa-circle-chevron-down fa-rotate-270"></i>
+                </b-button>
+              </nuxt-link>
 
-              </el-button>
-              <el-button type="danger" size="medium">WATCH TRAILER
-                <i  class="el-icon-video-play"></i>
-              </el-button>
+              <nuxt-link :to="`/films/${carousel.id}`">
+                <b-button variant="danger">WATCH TRAILER
+                  <i class="fa-solid fa-circle-play fa-sm"></i>
+                </b-button>
+              </nuxt-link>
+
 
             </div>
         </div>
-        <img style="background-size: cover;width: 100%" :src=carousel.url alt="" />
+        <img style="background-size: cover;width: 100%" :src="'https://image.tmdb.org/t/p/original'+carousel.backdrop_path" alt="" />
       </div>
-<!--      <h2 :style="`backgroundImage: url('${carousel.url}')`" >-->
-<!--          <span class="banner">-->
-<!--              <span style="color: #FFFFFF;line-height: 50px;font-size: 48px;font-weight: bold;max-width: 50%"  >-->
-<!--                <span >The Godfather Part II</span>-->
-<!--                <span style="color: #FFFFFF;font-weight: 400;font-size: 16px;display: block">In the continuing saga of the Corleone crime family, a young Vito Corleone grows up in Sicily and in 1910s New York. In the 1950s, Michael Corleone attempts to expand the family business into Las Vegas, Hollywood and Cuba.</span>-->
-<!--              </span>-->
-<!--&lt;!&ndash;              <h1 class="banner-text"></h1>&ndash;&gt;-->
-<!--          </span>-->
-
-<!--      </h2>-->
-<!--      <img style="width: 100%;height:auto;margin-top: 50px;padding: 0 -20px" :src=carousel.url alt="">-->
     </el-carousel-item>
   </el-carousel>
 </template>
@@ -39,16 +33,13 @@
 export default {
   name: "Carousel.vue",
   components: {
-
   },
-
+  props:{
+    carousels:Array,
+  },
   data(){
     return{
-      carousels:[
-        {url:"https://image.tmdb.org/t/p/original/tmU7GeKVybMWFButWEGl2M4GeiP.jpg"},
-        // {url:"https://image.tmdb.org/t/p/original/iNh3BivHyg5sQRPP1KOkzguEX0H.jpg"},
-        // {url:"https://image.tmdb.org/t/p/original/kGzFbGhp99zva6oZODW5atUtnqi.jpg"}
-      ],
+
     }
     },
 
