@@ -1,9 +1,10 @@
 <template>
   <div>
     <div class="row" style="position: relative">
-      <div v-for="(slide, index) in displayedBoxes" :key="index" class="box_wrapper col-md-3 " >
-        <Card :image="slide.backdrop_path" :title="slide.title"></Card>
-<!--        <img :src=slide.image style="width: 100%;background-size: cover;border-radius: 12px;transition: transform 0.3s ease-in-out; " alt="">-->
+      <div  v-for="(slide, index) in displayedBoxes" :key="index" class="box_wrapper col-md-3 " >
+        <nuxt-link :to="`/films/${slide.id}`" style="text-decoration: none">
+        <Card :image="slide.backdrop_path" :title="slide.title"  ></Card>
+        </nuxt-link>
       </div>
       <div class="next_remove">
         <b-btn :disabled="currentPage === 0" style="background-color: transparent;border: 0;margin-left: -40px">
@@ -18,27 +19,17 @@
 
 
   </div>
-
 </template>
 
 <script>
 import Card from "./Card";
 export default {
   components: { Card },
-
   props:{
     slides:Array
   },
   data() {
     return {
-  //     slides:
-  //       [{image:'https://image.tmdb.org/t/p/original/5Y5pz0NX7SZS9036I733F7uNcwK.jpg'},
-  //   {image:'https://image.tmdb.org/t/p/original/5Y5pz0NX7SZS9036I733F7uNcwK.jpg'},
-  //   {image:'https://image.tmdb.org/t/p/original/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg'},
-  //   {image:'https://image.tmdb.org/t/p/original/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg'},
-  //   {image:'https://image.tmdb.org/t/p/original/94TIUEhuwv8PhdIADEvSuwPljS5.jpg'},
-  //   {image:'https://image.tmdb.org/t/p/original/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg'},
-  // ],
       currentPage: 0,
       boxesPerPage: 4,
       defaultStyles: {
@@ -46,7 +37,6 @@ export default {
       },
       activeStyles: {
         color: '#ffffff',
-
       }
     };
   },
