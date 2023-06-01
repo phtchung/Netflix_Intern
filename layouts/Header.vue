@@ -8,13 +8,13 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto align-items-center">
           <form style="display: flex;align-items: center" >
-            <input size="sm" class="mr-sm-2" placeholder="Search"/>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+            <input size="sm" class="mr-sm-2" v-model="search_key" placeholder="Search"/>
+            <b-button size="sm" class="my-2 my-sm-0" @click="handleSubmit(search_key)">Search</b-button>
           </form>
 
           <b-nav-item-dropdown text="Lang" right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">VN</b-dropdown-item>
+            <b-dropdown-item >EN</b-dropdown-item>
+            <b-dropdown-item >VN</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown right>
@@ -33,7 +33,17 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
+  data(){
+    return{
+        search_key:"",
+    }
+  },
+  methods:{
+      handleSubmit(search_key){
+        this.$router.push({ path: '/search', query: { q: search_key } })
+      }
+  }
 }
 </script>
 
