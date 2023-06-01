@@ -13,7 +13,7 @@
       <div class="row position-relative " style="margin-bottom: 90px" >
         <div v-for="(slide, index) in lists_nowplaying" :key="index" class="d-flex col-md-3 "  >
           <nuxt-link :to="`/films/${slide.id}`" style="text-decoration: none;">
-          <Card :image="'https://image.tmdb.org/t/p/original'+slide.backdrop_path" :title="slide.title" ></Card>
+          <Card :isLoading="isLoading" :image="'https://image.tmdb.org/t/p/original'+slide.backdrop_path" :title="slide.title" ></Card>
         <!--        <img :src=slide.image style="width: 100%;background-size: cover;border-radius: 12px;transition: transform 0.3s ease-in-out; " alt="">-->
           </nuxt-link>
         </div>
@@ -28,13 +28,15 @@
 import Slide from "../components/Slide";
 import Carousel from "../components/Carousel";
 import Card from "../components/Card";
+import { Spinner } from 'vue-spinner/dist/vue-spinner.min.js';
 export default {
   name: 'IndexPage',
   components:{
-    Carousel,Slide,Card
+    Carousel,Slide,Card,Spinner,
   },
   data() {
     return {
+      isLoading:true,
       images: [
         'https://image.tmdb.org/t/p/original/5Y5pz0NX7SZS9036I733F7uNcwK.jpg',
         'https://image.tmdb.org/t/p/original/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg',
@@ -46,18 +48,23 @@ export default {
     }
   },
   created() {
+    this.isLoading  = true
     this.$axios.get('https://api.themoviedb.org/3/movie/now_playing?api_key=e9e9d8da18ae29fc430845952232787c&language=en-US&page=1')
       .then(response => {
         this.lists_nowplaying = response.data.results.slice(0,19)
         // console.log(response.data.results);
+        this.isLoading = false
       })
       .catch(error => {
         console.log(error);
+        this.isLoading = false
       });
     this.$axios.get('https://api.themoviedb.org/3/movie/upcoming?api_key=e9e9d8da18ae29fc430845952232787c&language=en-US&page=1')
       .then(response => {
         this.lists_upcoming = response.data.results
         // console.log(response.data.results);
+        this.isLoading = false
+
       })
       .catch(error => {
         console.log(error);
@@ -65,11 +72,14 @@ export default {
     this.$axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=e9e9d8da18ae29fc430845952232787c&language=en-US&page=1')
       .then(response => {
         this.lists_top = response.data.results
+        this.isLoading = false
+
         // console.log(response.data.results);
       })
       .catch(error => {
         console.log(error);
       });
+
   }
 }
 </script>
