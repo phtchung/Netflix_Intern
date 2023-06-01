@@ -1,6 +1,6 @@
 <template>
   <div class="b-sidebar-right">
-    <div class="sidebar-right-item mt-3">
+    <div class="sidebar-right-item mt-3" @click="directToFilms(id)">
       <img
         style="max-width: 40px;background-size: contain"
         height="55px"
@@ -25,8 +25,12 @@ export default {
     name:String,
     starValue:String,
     img_src:String,
+    id:String,
   },
   methods: {
+    directToFilms(id){
+      this.$router.push({path:`/films/${id}`})
+    }
     // handleWatch(id) {
     //   this.$router.push(`/films/${id}`);
     // },
