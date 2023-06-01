@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="row" style="position: relative">
+    <div class="row" style="position: relative ; transition: transform 0.01s ease;" >
       <div  v-for="(slide, index) in displayedBoxes" :key="index" class="box_wrapper col-md-3 " >
         <nuxt-link :to="`/films/${slide.id}`" style="text-decoration: none">
         <Card :image="slide.backdrop_path" :title="slide.title"  ></Card>
         </nuxt-link>
       </div>
       <div class="next_remove">
-        <b-btn :disabled="currentPage === 0" style="background-color: transparent;border: 0;margin-left: -40px">
+        <b-btn :disabled="currentPage === 0" style="background-color: transparent;border: 0;margin-left: -40px;" >
           <i @click="prevPage" :class="{ 'dark-color': currentPage === 0, 'bright-color': currentPage !== 0 }"  style="cursor: pointer;color: #ffffff" class="fa-solid fa-chevron-left fa-2xl"></i>
         </b-btn>
 
