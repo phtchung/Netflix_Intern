@@ -36,9 +36,10 @@
                   </div>
                   <div>
                     <b-button @click="directToWatch(film_id)" variant="success" style="margin-right: 16px">WATCH NOW
+                      <nuxt-link to="watch"></nuxt-link>
                       <i class="fa-sharp fa-solid fa-circle-chevron-down fa-rotate-270"></i>
                     </b-button>
-                    <b-button variant="danger">WATCH TRAILER
+                    <b-button @click="directToWatch(film_id)" variant="danger">WATCH TRAILER
                       <i class="fa-solid fa-circle-play fa-sm"></i>
                     </b-button>
 
@@ -53,7 +54,7 @@
               </div>
 
               <div v-for="(rcm_film,index) in recommends_film" class="rcm_item row  b-sidebar-right align-items-center"   >
-                <SideBarItem :name="rcm_film.title" :star-value="Round_half(parseInt(rcm_film.vote_average))" :img_src="rcm_film.poster_path"></SideBarItem>
+                <SideBarItem :id="rcm_film.id" :name="rcm_film.title" :star-value="Round_half(parseInt(rcm_film.vote_average))" :img_src="rcm_film.poster_path"></SideBarItem>
               </div>
             </div>
 
@@ -79,13 +80,15 @@
 import SideBarItem from "../../../components/SideBarItem";
 import Card from "../../../components/Card";
 import Slide from "../../../components/Slide";
+
 import { mapState } from 'vuex'
 export default{
   name: "_film.vue",
-  components: { SideBarItem ,Card , Slide},
+  components: { SideBarItem ,Card , Slide },
   data(){
     return{
       film_id:null,
+      is_loading:true,
       detail_film:{},
       genres:[],
       actors:{},
@@ -113,7 +116,7 @@ export default{
     this.$store.dispatch('fetchData')
   },
   mounted() {
-    this.film_id = this.$route.params.film;
+    this.film_id = this.$route.params.id;
     console.log('film id ' + this.film_id)
     this.fetchFilmData(this.film_id)
     this.fetchActorData(this.film_id)
@@ -121,6 +124,7 @@ export default{
   },
   methods:{
     fetchFilmData(id){
+
       this.$axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=e9e9d8da18ae29fc430845952232787c&append_to_response=videos`)
         .then(response => {
           this.detail_film = response.data
@@ -129,6 +133,7 @@ export default{
         .catch(error => {
           console.log(error);
         });
+
     },
     fetchActorData(id){
         this.$axios.get(`http://api.themoviedb.org/3/movie/${id}/casts?api_key=e9e9d8da18ae29fc430845952232787c`)
