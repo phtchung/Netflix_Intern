@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import SideBarItem from "../../../components/SideBarItem";
+import SideBarItem from "../../../../components/SideBarItem";
 export default {
   name: "_watch",
   components:{

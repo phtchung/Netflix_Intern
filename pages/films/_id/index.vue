@@ -35,7 +35,7 @@
                       / {{detail_film.vote_count}} )</h5>
                   </div>
                   <div>
-                    <b-button variant="success" style="margin-right: 16px">WATCH NOW
+                    <b-button @click="directToWatch(film_id)" variant="success" style="margin-right: 16px">WATCH NOW
                       <i class="fa-sharp fa-solid fa-circle-chevron-down fa-rotate-270"></i>
                     </b-button>
                     <b-button variant="danger">WATCH TRAILER
@@ -76,9 +76,9 @@
 </template>
 
 <script>
-import SideBarItem from "../../components/SideBarItem";
-import Card from "../../components/Card";
-import Slide from "../../components/Slide";
+import SideBarItem from "../../../components/SideBarItem";
+import Card from "../../../components/Card";
+import Slide from "../../../components/Slide";
 import { mapState } from 'vuex'
 export default{
   name: "_film.vue",
@@ -114,6 +114,7 @@ export default{
   },
   mounted() {
     this.film_id = this.$route.params.film;
+    console.log('film id ' + this.film_id)
     this.fetchFilmData(this.film_id)
     this.fetchActorData(this.film_id)
     this.fetchRecommendData(this.film_id)
@@ -160,6 +161,10 @@ export default{
         rounded_decimal = 1
       }
       return integer_part + rounded_decimal
+    },
+
+    directToWatch(id){
+        this.$router.push({path:`/films/${id}/watch`})
     }
   }
 
