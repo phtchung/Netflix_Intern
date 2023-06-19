@@ -11,12 +11,22 @@
       <h2 style="margin-top: 40px;font-weight: 550;color: white;font-size: 60px">Film Popular</h2>
       <el-divider></el-divider>
       <div class="row position-relative " style="margin-bottom: 90px" >
-        <div v-for="(slide, index) in lists_nowplaying" :key="index" class="d-flex col-md-3 "  >
+
+        <div v-for="(slide, index) in paginatedFilms" :key="index" class="d-flex col-md-3 " id="film_popular" >
           <nuxt-link :to="`/films/${slide.id}`" style="text-decoration: none;">
           <Card :isLoading="isLoading" :image="'https://image.tmdb.org/t/p/original'+slide.backdrop_path" :title="slide.title" ></Card>
         <!--        <img :src=slide.image style="width: 100%;background-size: cover;border-radius: 12px;transition: transform 0.3s ease-in-out; " alt="">-->
           </nuxt-link>
         </div>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="lists_nowplaying.length"
+          :per-page="perPage"
+          align="center"
+          aria-controls="film_popular"
+          class="mt-4"
+          size="lg"
+        ></b-pagination>
       </div>
 
     </div>
@@ -37,6 +47,8 @@ export default {
   data() {
     return {
       isLoading:true,
+      perPage:8,
+      currentPage:1,
       images: [
         'https://image.tmdb.org/t/p/original/5Y5pz0NX7SZS9036I733F7uNcwK.jpg',
         'https://image.tmdb.org/t/p/original/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg',
@@ -46,6 +58,13 @@ export default {
       lists_nowplaying:[],
       lists_top:[],
     }
+  },
+  computed:{
+    paginatedFilms() {
+      const start = (this.currentPage - 1) * this.perPage;
+      const end = start + this.perPage;
+      return this.lists_nowplaying.slice(start, end);
+    },
   },
   created() {
     this.isLoading  = true
@@ -123,5 +142,11 @@ export default {
 
   }
 
-
+  .b-pagination >>> .page-link {
+    background-color: rgb(51, 51, 51); /* Màu nền của nút button */
+    color: white; /* Màu chữ của nút button */
+    border-color: transparent; /* Màu viền của nút button */
+    padding: 5px 12px 6px;
+    font-size: 20px;
+  }
 </style>

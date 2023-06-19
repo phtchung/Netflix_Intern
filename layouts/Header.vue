@@ -17,7 +17,7 @@
             <b-dropdown-item >VN</b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item-dropdown right>
+          <b-nav-item-dropdown right >
             <!-- Using 'button-content' slot -->
             <template #button-content>
               <em>User</em>
@@ -48,5 +48,8 @@ export default {
 </script>
 
 <style scoped>
-
+ul >>> .dropdown-menu{
+    left: -60px;
+    min-width: 120px;
+}
 </style>
